@@ -33,7 +33,7 @@ var (
 	regenerate   = flag.Bool("regenerate", false, "regenerate files")
 	buildRelease = flag.Bool("buildRelease", false, "build release binaries")
 
-	protobufVersion = "33.3"
+	protobufVersion = "35.1"
 
 	golangVersions = func() []string {
 		// Version policy: oldest supported version of Go, plus the version before that.
@@ -299,6 +299,8 @@ func mustInitDeps(t *testing.T) {
 				"bazel", "build",
 				":protoc",
 				"//conformance:conformance_test_runner",
+				"--//bazel/flags:prefer_prebuilt_protoc=false",
+				"--//bazel/flags:allow_nonstandard_protoc",
 			}
 			if runtime.GOOS == "darwin" {
 				// Adding this environment variable appears to be necessary for macOS builds.

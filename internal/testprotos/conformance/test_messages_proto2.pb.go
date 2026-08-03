@@ -2621,8 +2621,9 @@ func (x *TestAllTypesProto2_MessageSetCorrectExtension1) GetStr() string {
 }
 
 type TestAllTypesProto2_MessageSetCorrectExtension2 struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	I             *int32                 `protobuf:"varint,9,opt,name=i" json:"i,omitempty"`
+	state         protoimpl.MessageState                `protogen:"open.v1"`
+	I             *int32                                `protobuf:"varint,9,opt,name=i" json:"i,omitempty"`
+	SubMsg        *TestAllTypesProto2_MessageSetCorrect `protobuf:"bytes,10,opt,name=sub_msg,json=subMsg" json:"sub_msg,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2662,6 +2663,13 @@ func (x *TestAllTypesProto2_MessageSetCorrectExtension2) GetI() int32 {
 		return *x.I
 	}
 	return 0
+}
+
+func (x *TestAllTypesProto2_MessageSetCorrectExtension2) GetSubMsg() *TestAllTypesProto2_MessageSetCorrect {
+	if x != nil {
+		return x.SubMsg
+	}
+	return nil
 }
 
 type TestAllTypesProto2_ExtensionWithOneof struct {
@@ -3222,6 +3230,22 @@ var file_google_protobuf_test_messages_proto2_proto_extTypes = []protoimpl.Exten
 	},
 	{
 		ExtendedType:  (*TestAllTypesProto2)(nil),
+		ExtensionType: (*string)(nil),
+		Field:         133,
+		Name:          "protobuf_test_messages.proto2.extension_string",
+		Tag:           "bytes,133,opt,name=extension_string",
+		Filename:      "google/protobuf/test_messages_proto2.proto",
+	},
+	{
+		ExtendedType:  (*TestAllTypesProto2)(nil),
+		ExtensionType: ([]byte)(nil),
+		Field:         134,
+		Name:          "protobuf_test_messages.proto2.extension_bytes",
+		Tag:           "bytes,134,opt,name=extension_bytes",
+		Filename:      "google/protobuf/test_messages_proto2.proto",
+	},
+	{
+		ExtendedType:  (*TestAllTypesProto2)(nil),
 		ExtensionType: (*GroupField)(nil),
 		Field:         121,
 		Name:          "protobuf_test_messages.proto2.groupfield",
@@ -3274,33 +3298,37 @@ var file_google_protobuf_test_messages_proto2_proto_extTypes = []protoimpl.Exten
 var (
 	// optional int32 extension_int32 = 120;
 	E_ExtensionInt32 = &file_google_protobuf_test_messages_proto2_proto_extTypes[0]
+	// optional string extension_string = 133;
+	E_ExtensionString = &file_google_protobuf_test_messages_proto2_proto_extTypes[1]
+	// optional bytes extension_bytes = 134;
+	E_ExtensionBytes = &file_google_protobuf_test_messages_proto2_proto_extTypes[2]
 	// optional protobuf_test_messages.proto2.GroupField groupfield = 121;
-	E_Groupfield = &file_google_protobuf_test_messages_proto2_proto_extTypes[1]
+	E_Groupfield = &file_google_protobuf_test_messages_proto2_proto_extTypes[3]
 )
 
 // Extension fields to TestAllTypesProto2_MessageSetCorrect.
 var (
 	// optional protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension1 message_set_extension = 1547769;
-	E_TestAllTypesProto2_MessageSetCorrectExtension1_MessageSetExtension = &file_google_protobuf_test_messages_proto2_proto_extTypes[2]
+	E_TestAllTypesProto2_MessageSetCorrectExtension1_MessageSetExtension = &file_google_protobuf_test_messages_proto2_proto_extTypes[4]
 	// optional protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension2 message_set_extension = 4135312;
-	E_TestAllTypesProto2_MessageSetCorrectExtension2_MessageSetExtension = &file_google_protobuf_test_messages_proto2_proto_extTypes[3]
+	E_TestAllTypesProto2_MessageSetCorrectExtension2_MessageSetExtension = &file_google_protobuf_test_messages_proto2_proto_extTypes[5]
 	// optional protobuf_test_messages.proto2.TestAllTypesProto2.ExtensionWithOneof extension_with_oneof = 123456789;
-	E_TestAllTypesProto2_ExtensionWithOneof_ExtensionWithOneof = &file_google_protobuf_test_messages_proto2_proto_extTypes[4]
+	E_TestAllTypesProto2_ExtensionWithOneof_ExtensionWithOneof = &file_google_protobuf_test_messages_proto2_proto_extTypes[6]
 )
 
 // Extension fields to TestAllRequiredTypesProto2_MessageSetCorrect.
 var (
 	// optional protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension1 message_set_extension = 1547769;
-	E_TestAllRequiredTypesProto2_MessageSetCorrectExtension1_MessageSetExtension = &file_google_protobuf_test_messages_proto2_proto_extTypes[5]
+	E_TestAllRequiredTypesProto2_MessageSetCorrectExtension1_MessageSetExtension = &file_google_protobuf_test_messages_proto2_proto_extTypes[7]
 	// optional protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2 message_set_extension = 4135312;
-	E_TestAllRequiredTypesProto2_MessageSetCorrectExtension2_MessageSetExtension = &file_google_protobuf_test_messages_proto2_proto_extTypes[6]
+	E_TestAllRequiredTypesProto2_MessageSetCorrectExtension2_MessageSetExtension = &file_google_protobuf_test_messages_proto2_proto_extTypes[8]
 )
 
 var File_google_protobuf_test_messages_proto2_proto protoreflect.FileDescriptor
 
 const file_google_protobuf_test_messages_proto2_proto_rawDesc = "" +
 	"\n" +
-	"*google/protobuf/test_messages_proto2.proto\x12\x1dprotobuf_test_messages.proto2\"\xe7Y\n" +
+	"*google/protobuf/test_messages_proto2.proto\x12\x1dprotobuf_test_messages.proto2\"\xc5Z\n" +
 	"\x12TestAllTypesProto2\x12%\n" +
 	"\x0eoptional_int32\x18\x01 \x01(\x05R\roptionalInt32\x12%\n" +
 	"\x0eoptional_int64\x18\x02 \x01(\x03R\roptionalInt64\x12'\n" +
@@ -3539,9 +3567,11 @@ const file_google_protobuf_test_messages_proto2_proto_rawDesc = "" +
 	"\x11MessageSetCorrect*\b\b\x04\x10\xff\xff\xff\xff\a:\x02\b\x01\x1a\xfa\x01\n" +
 	"\x1bMessageSetCorrectExtension1\x12\x10\n" +
 	"\x03str\x18\x19 \x01(\tR\x03str2\xc8\x01\n" +
-	"\x15message_set_extension\x12C.protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrect\x18\xf9\xbb^ \x01(\v2M.protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension1R\x13messageSetExtension\x1a\xf7\x01\n" +
+	"\x15message_set_extension\x12C.protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrect\x18\xf9\xbb^ \x01(\v2M.protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension1R\x13messageSetExtension\x1a\xd5\x02\n" +
 	"\x1bMessageSetCorrectExtension2\x12\f\n" +
-	"\x01i\x18\t \x01(\x05R\x01i2\xc9\x01\n" +
+	"\x01i\x18\t \x01(\x05R\x01i\x12\\\n" +
+	"\asub_msg\x18\n" +
+	" \x01(\v2C.protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectR\x06subMsg2\xc9\x01\n" +
 	"\x15message_set_extension\x12C.protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrect\x18\x90\xb3\xfc\x01 \x01(\v2M.protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension2R\x13messageSetExtension\x1a\x84\x02\n" +
 	"\x12ExtensionWithOneof\x12\x0e\n" +
 	"\x01a\x18\x01 \x01(\x05H\x00R\x01a\x12\x0e\n" +
@@ -3668,7 +3698,9 @@ const file_google_protobuf_test_messages_proto2_proto_rawDesc = "" +
 	"\vFOREIGN_FOO\x10\x00\x12\x0f\n" +
 	"\vFOREIGN_BAR\x10\x01\x12\x0f\n" +
 	"\vFOREIGN_BAZ\x10\x02:Z\n" +
-	"\x0fextension_int32\x121.protobuf_test_messages.proto2.TestAllTypesProto2\x18x \x01(\x05R\x0eextensionInt32:|\n" +
+	"\x0fextension_int32\x121.protobuf_test_messages.proto2.TestAllTypesProto2\x18x \x01(\x05R\x0eextensionInt32:]\n" +
+	"\x10extension_string\x121.protobuf_test_messages.proto2.TestAllTypesProto2\x18\x85\x01 \x01(\tR\x0fextensionString:[\n" +
+	"\x0fextension_bytes\x121.protobuf_test_messages.proto2.TestAllTypesProto2\x18\x86\x01 \x01(\fR\x0eextensionBytes:|\n" +
 	"\n" +
 	"groupfield\x121.protobuf_test_messages.proto2.TestAllTypesProto2\x18y \x01(\n" +
 	"2).protobuf_test_messages.proto2.GroupFieldR\n" +
@@ -3802,26 +3834,29 @@ var file_google_protobuf_test_messages_proto2_proto_depIdxs = []int32{
 	5,  // 54: protobuf_test_messages.proto2.TestAllTypesProto2.MapStringForeignMessageEntry.value:type_name -> protobuf_test_messages.proto2.ForeignMessageProto2
 	1,  // 55: protobuf_test_messages.proto2.TestAllTypesProto2.MapStringNestedEnumEntry.value:type_name -> protobuf_test_messages.proto2.TestAllTypesProto2.NestedEnum
 	0,  // 56: protobuf_test_messages.proto2.TestAllTypesProto2.MapStringForeignEnumEntry.value:type_name -> protobuf_test_messages.proto2.ForeignEnumProto2
-	12, // 57: protobuf_test_messages.proto2.TestAllRequiredTypesProto2.NestedMessage.corecursive:type_name -> protobuf_test_messages.proto2.TestAllRequiredTypesProto2
-	12, // 58: protobuf_test_messages.proto2.TestAllRequiredTypesProto2.NestedMessage.optional_corecursive:type_name -> protobuf_test_messages.proto2.TestAllRequiredTypesProto2
-	4,  // 59: protobuf_test_messages.proto2.extension_int32:extendee -> protobuf_test_messages.proto2.TestAllTypesProto2
-	4,  // 60: protobuf_test_messages.proto2.groupfield:extendee -> protobuf_test_messages.proto2.TestAllTypesProto2
-	38, // 61: protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension1.message_set_extension:extendee -> protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrect
-	38, // 62: protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension2.message_set_extension:extendee -> protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrect
-	38, // 63: protobuf_test_messages.proto2.TestAllTypesProto2.ExtensionWithOneof.extension_with_oneof:extendee -> protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrect
-	45, // 64: protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension1.message_set_extension:extendee -> protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrect
-	45, // 65: protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2.message_set_extension:extendee -> protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrect
-	6,  // 66: protobuf_test_messages.proto2.groupfield:type_name -> protobuf_test_messages.proto2.GroupField
-	39, // 67: protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension1.message_set_extension:type_name -> protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension1
-	40, // 68: protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension2.message_set_extension:type_name -> protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension2
-	41, // 69: protobuf_test_messages.proto2.TestAllTypesProto2.ExtensionWithOneof.extension_with_oneof:type_name -> protobuf_test_messages.proto2.TestAllTypesProto2.ExtensionWithOneof
-	46, // 70: protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension1.message_set_extension:type_name -> protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension1
-	47, // 71: protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2.message_set_extension:type_name -> protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2
-	72, // [72:72] is the sub-list for method output_type
-	72, // [72:72] is the sub-list for method input_type
-	66, // [66:72] is the sub-list for extension type_name
-	59, // [59:66] is the sub-list for extension extendee
-	0,  // [0:59] is the sub-list for field type_name
+	38, // 57: protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension2.sub_msg:type_name -> protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrect
+	12, // 58: protobuf_test_messages.proto2.TestAllRequiredTypesProto2.NestedMessage.corecursive:type_name -> protobuf_test_messages.proto2.TestAllRequiredTypesProto2
+	12, // 59: protobuf_test_messages.proto2.TestAllRequiredTypesProto2.NestedMessage.optional_corecursive:type_name -> protobuf_test_messages.proto2.TestAllRequiredTypesProto2
+	4,  // 60: protobuf_test_messages.proto2.extension_int32:extendee -> protobuf_test_messages.proto2.TestAllTypesProto2
+	4,  // 61: protobuf_test_messages.proto2.extension_string:extendee -> protobuf_test_messages.proto2.TestAllTypesProto2
+	4,  // 62: protobuf_test_messages.proto2.extension_bytes:extendee -> protobuf_test_messages.proto2.TestAllTypesProto2
+	4,  // 63: protobuf_test_messages.proto2.groupfield:extendee -> protobuf_test_messages.proto2.TestAllTypesProto2
+	38, // 64: protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension1.message_set_extension:extendee -> protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrect
+	38, // 65: protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension2.message_set_extension:extendee -> protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrect
+	38, // 66: protobuf_test_messages.proto2.TestAllTypesProto2.ExtensionWithOneof.extension_with_oneof:extendee -> protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrect
+	45, // 67: protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension1.message_set_extension:extendee -> protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrect
+	45, // 68: protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2.message_set_extension:extendee -> protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrect
+	6,  // 69: protobuf_test_messages.proto2.groupfield:type_name -> protobuf_test_messages.proto2.GroupField
+	39, // 70: protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension1.message_set_extension:type_name -> protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension1
+	40, // 71: protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension2.message_set_extension:type_name -> protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension2
+	41, // 72: protobuf_test_messages.proto2.TestAllTypesProto2.ExtensionWithOneof.extension_with_oneof:type_name -> protobuf_test_messages.proto2.TestAllTypesProto2.ExtensionWithOneof
+	46, // 73: protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension1.message_set_extension:type_name -> protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension1
+	47, // 74: protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2.message_set_extension:type_name -> protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2
+	75, // [75:75] is the sub-list for method output_type
+	75, // [75:75] is the sub-list for method input_type
+	69, // [69:75] is the sub-list for extension type_name
+	60, // [60:69] is the sub-list for extension extendee
+	0,  // [0:60] is the sub-list for field type_name
 }
 
 func init() { file_google_protobuf_test_messages_proto2_proto_init() }
@@ -3858,7 +3893,7 @@ func file_google_protobuf_test_messages_proto2_proto_init() {
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_google_protobuf_test_messages_proto2_proto_rawDesc), len(file_google_protobuf_test_messages_proto2_proto_rawDesc)),
 			NumEnums:      4,
 			NumMessages:   49,
-			NumExtensions: 7,
+			NumExtensions: 9,
 			NumServices:   0,
 		},
 		GoTypes:           file_google_protobuf_test_messages_proto2_proto_goTypes,

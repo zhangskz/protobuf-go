@@ -2581,8 +2581,9 @@ func (x *TestAllTypesProto2_MessageSetCorrectExtension1) GetStr() string {
 }
 
 type TestAllTypesProto2_MessageSetCorrectExtension2 struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	I             *int32                 `protobuf:"varint,9,opt,name=i" json:"i,omitempty"`
+	state         protoimpl.MessageState                `protogen:"open.v1"`
+	I             *int32                                `protobuf:"varint,9,opt,name=i" json:"i,omitempty"`
+	SubMsg        *TestAllTypesProto2_MessageSetCorrect `protobuf:"bytes,10,opt,name=sub_msg,json=subMsg" json:"sub_msg,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2622,6 +2623,13 @@ func (x *TestAllTypesProto2_MessageSetCorrectExtension2) GetI() int32 {
 		return *x.I
 	}
 	return 0
+}
+
+func (x *TestAllTypesProto2_MessageSetCorrectExtension2) GetSubMsg() *TestAllTypesProto2_MessageSetCorrect {
+	if x != nil {
+		return x.SubMsg
+	}
+	return nil
 }
 
 type TestAllTypesProto2_ExtensionWithOneof struct {
@@ -3182,6 +3190,22 @@ var file_editions_golden_test_messages_proto2_editions_proto_extTypes = []protoi
 	},
 	{
 		ExtendedType:  (*TestAllTypesProto2)(nil),
+		ExtensionType: (*string)(nil),
+		Field:         133,
+		Name:          "protobuf_test_messages.editions.proto2.extension_string",
+		Tag:           "bytes,133,opt,name=extension_string",
+		Filename:      "editions/golden/test_messages_proto2_editions.proto",
+	},
+	{
+		ExtendedType:  (*TestAllTypesProto2)(nil),
+		ExtensionType: ([]byte)(nil),
+		Field:         134,
+		Name:          "protobuf_test_messages.editions.proto2.extension_bytes",
+		Tag:           "bytes,134,opt,name=extension_bytes",
+		Filename:      "editions/golden/test_messages_proto2_editions.proto",
+	},
+	{
+		ExtendedType:  (*TestAllTypesProto2)(nil),
 		ExtensionType: (*GroupField)(nil),
 		Field:         121,
 		Name:          "protobuf_test_messages.editions.proto2.groupfield",
@@ -3234,33 +3258,37 @@ var file_editions_golden_test_messages_proto2_editions_proto_extTypes = []protoi
 var (
 	// optional int32 extension_int32 = 120;
 	E_ExtensionInt32 = &file_editions_golden_test_messages_proto2_editions_proto_extTypes[0]
+	// optional string extension_string = 133;
+	E_ExtensionString = &file_editions_golden_test_messages_proto2_editions_proto_extTypes[1]
+	// optional bytes extension_bytes = 134;
+	E_ExtensionBytes = &file_editions_golden_test_messages_proto2_editions_proto_extTypes[2]
 	// optional protobuf_test_messages.editions.proto2.GroupField groupfield = 121;
-	E_Groupfield = &file_editions_golden_test_messages_proto2_editions_proto_extTypes[1]
+	E_Groupfield = &file_editions_golden_test_messages_proto2_editions_proto_extTypes[3]
 )
 
 // Extension fields to TestAllTypesProto2_MessageSetCorrect.
 var (
 	// optional protobuf_test_messages.editions.proto2.TestAllTypesProto2.MessageSetCorrectExtension1 message_set_extension = 1547769;
-	E_TestAllTypesProto2_MessageSetCorrectExtension1_MessageSetExtension = &file_editions_golden_test_messages_proto2_editions_proto_extTypes[2]
+	E_TestAllTypesProto2_MessageSetCorrectExtension1_MessageSetExtension = &file_editions_golden_test_messages_proto2_editions_proto_extTypes[4]
 	// optional protobuf_test_messages.editions.proto2.TestAllTypesProto2.MessageSetCorrectExtension2 message_set_extension = 4135312;
-	E_TestAllTypesProto2_MessageSetCorrectExtension2_MessageSetExtension = &file_editions_golden_test_messages_proto2_editions_proto_extTypes[3]
+	E_TestAllTypesProto2_MessageSetCorrectExtension2_MessageSetExtension = &file_editions_golden_test_messages_proto2_editions_proto_extTypes[5]
 	// optional protobuf_test_messages.editions.proto2.TestAllTypesProto2.ExtensionWithOneof extension_with_oneof = 123456789;
-	E_TestAllTypesProto2_ExtensionWithOneof_ExtensionWithOneof = &file_editions_golden_test_messages_proto2_editions_proto_extTypes[4]
+	E_TestAllTypesProto2_ExtensionWithOneof_ExtensionWithOneof = &file_editions_golden_test_messages_proto2_editions_proto_extTypes[6]
 )
 
 // Extension fields to TestAllRequiredTypesProto2_MessageSetCorrect.
 var (
 	// optional protobuf_test_messages.editions.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension1 message_set_extension = 1547769;
-	E_TestAllRequiredTypesProto2_MessageSetCorrectExtension1_MessageSetExtension = &file_editions_golden_test_messages_proto2_editions_proto_extTypes[5]
+	E_TestAllRequiredTypesProto2_MessageSetCorrectExtension1_MessageSetExtension = &file_editions_golden_test_messages_proto2_editions_proto_extTypes[7]
 	// optional protobuf_test_messages.editions.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2 message_set_extension = 4135312;
-	E_TestAllRequiredTypesProto2_MessageSetCorrectExtension2_MessageSetExtension = &file_editions_golden_test_messages_proto2_editions_proto_extTypes[6]
+	E_TestAllRequiredTypesProto2_MessageSetCorrectExtension2_MessageSetExtension = &file_editions_golden_test_messages_proto2_editions_proto_extTypes[8]
 )
 
 var File_editions_golden_test_messages_proto2_editions_proto protoreflect.FileDescriptor
 
 const file_editions_golden_test_messages_proto2_editions_proto_rawDesc = "" +
 	"\n" +
-	"3editions/golden/test_messages_proto2_editions.proto\x12&protobuf_test_messages.editions.proto2\"\xaa]\n" +
+	"3editions/golden/test_messages_proto2_editions.proto\x12&protobuf_test_messages.editions.proto2\"\x91^\n" +
 	"\x12TestAllTypesProto2\x12%\n" +
 	"\x0eoptional_int32\x18\x01 \x01(\x05R\roptionalInt32\x12%\n" +
 	"\x0eoptional_int64\x18\x02 \x01(\x03R\roptionalInt64\x12'\n" +
@@ -3497,9 +3525,11 @@ const file_editions_golden_test_messages_proto2_editions_proto_rawDesc = "" +
 	"\x11MessageSetCorrect*\b\b\x04\x10\xff\xff\xff\xff\a:\x02\b\x01\x1a\x8c\x02\n" +
 	"\x1bMessageSetCorrectExtension1\x12\x10\n" +
 	"\x03str\x18\x19 \x01(\tR\x03str2\xda\x01\n" +
-	"\x15message_set_extension\x12L.protobuf_test_messages.editions.proto2.TestAllTypesProto2.MessageSetCorrect\x18\xf9\xbb^ \x01(\v2V.protobuf_test_messages.editions.proto2.TestAllTypesProto2.MessageSetCorrectExtension1R\x13messageSetExtension\x1a\x89\x02\n" +
+	"\x15message_set_extension\x12L.protobuf_test_messages.editions.proto2.TestAllTypesProto2.MessageSetCorrect\x18\xf9\xbb^ \x01(\v2V.protobuf_test_messages.editions.proto2.TestAllTypesProto2.MessageSetCorrectExtension1R\x13messageSetExtension\x1a\xf0\x02\n" +
 	"\x1bMessageSetCorrectExtension2\x12\f\n" +
-	"\x01i\x18\t \x01(\x05R\x01i2\xdb\x01\n" +
+	"\x01i\x18\t \x01(\x05R\x01i\x12e\n" +
+	"\asub_msg\x18\n" +
+	" \x01(\v2L.protobuf_test_messages.editions.proto2.TestAllTypesProto2.MessageSetCorrectR\x06subMsg2\xdb\x01\n" +
 	"\x15message_set_extension\x12L.protobuf_test_messages.editions.proto2.TestAllTypesProto2.MessageSetCorrect\x18\x90\xb3\xfc\x01 \x01(\v2V.protobuf_test_messages.editions.proto2.TestAllTypesProto2.MessageSetCorrectExtension2R\x13messageSetExtension\x1a\x96\x02\n" +
 	"\x12ExtensionWithOneof\x12\x0e\n" +
 	"\x01a\x18\x01 \x01(\x05H\x00R\x01a\x12\x0e\n" +
@@ -3624,7 +3654,9 @@ const file_editions_golden_test_messages_proto2_editions_proto_rawDesc = "" +
 	"\vFOREIGN_FOO\x10\x00\x12\x0f\n" +
 	"\vFOREIGN_BAR\x10\x01\x12\x0f\n" +
 	"\vFOREIGN_BAZ\x10\x02:c\n" +
-	"\x0fextension_int32\x12:.protobuf_test_messages.editions.proto2.TestAllTypesProto2\x18x \x01(\x05R\x0eextensionInt32:\x95\x01\n" +
+	"\x0fextension_int32\x12:.protobuf_test_messages.editions.proto2.TestAllTypesProto2\x18x \x01(\x05R\x0eextensionInt32:f\n" +
+	"\x10extension_string\x12:.protobuf_test_messages.editions.proto2.TestAllTypesProto2\x18\x85\x01 \x01(\tR\x0fextensionString:d\n" +
+	"\x0fextension_bytes\x12:.protobuf_test_messages.editions.proto2.TestAllTypesProto2\x18\x86\x01 \x01(\fR\x0eextensionBytes:\x95\x01\n" +
 	"\n" +
 	"groupfield\x12:.protobuf_test_messages.editions.proto2.TestAllTypesProto2\x18y \x01(\v22.protobuf_test_messages.editions.proto2.GroupFieldB\x05\xaa\x01\x02(\x02R\n" +
 	"groupfieldBR\n" +
@@ -3757,26 +3789,29 @@ var file_editions_golden_test_messages_proto2_editions_proto_depIdxs = []int32{
 	5,  // 54: protobuf_test_messages.editions.proto2.TestAllTypesProto2.MapStringForeignMessageEntry.value:type_name -> protobuf_test_messages.editions.proto2.ForeignMessageProto2
 	1,  // 55: protobuf_test_messages.editions.proto2.TestAllTypesProto2.MapStringNestedEnumEntry.value:type_name -> protobuf_test_messages.editions.proto2.TestAllTypesProto2.NestedEnum
 	0,  // 56: protobuf_test_messages.editions.proto2.TestAllTypesProto2.MapStringForeignEnumEntry.value:type_name -> protobuf_test_messages.editions.proto2.ForeignEnumProto2
-	12, // 57: protobuf_test_messages.editions.proto2.TestAllRequiredTypesProto2.NestedMessage.corecursive:type_name -> protobuf_test_messages.editions.proto2.TestAllRequiredTypesProto2
-	12, // 58: protobuf_test_messages.editions.proto2.TestAllRequiredTypesProto2.NestedMessage.optional_corecursive:type_name -> protobuf_test_messages.editions.proto2.TestAllRequiredTypesProto2
-	4,  // 59: protobuf_test_messages.editions.proto2.extension_int32:extendee -> protobuf_test_messages.editions.proto2.TestAllTypesProto2
-	4,  // 60: protobuf_test_messages.editions.proto2.groupfield:extendee -> protobuf_test_messages.editions.proto2.TestAllTypesProto2
-	38, // 61: protobuf_test_messages.editions.proto2.TestAllTypesProto2.MessageSetCorrectExtension1.message_set_extension:extendee -> protobuf_test_messages.editions.proto2.TestAllTypesProto2.MessageSetCorrect
-	38, // 62: protobuf_test_messages.editions.proto2.TestAllTypesProto2.MessageSetCorrectExtension2.message_set_extension:extendee -> protobuf_test_messages.editions.proto2.TestAllTypesProto2.MessageSetCorrect
-	38, // 63: protobuf_test_messages.editions.proto2.TestAllTypesProto2.ExtensionWithOneof.extension_with_oneof:extendee -> protobuf_test_messages.editions.proto2.TestAllTypesProto2.MessageSetCorrect
-	45, // 64: protobuf_test_messages.editions.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension1.message_set_extension:extendee -> protobuf_test_messages.editions.proto2.TestAllRequiredTypesProto2.MessageSetCorrect
-	45, // 65: protobuf_test_messages.editions.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2.message_set_extension:extendee -> protobuf_test_messages.editions.proto2.TestAllRequiredTypesProto2.MessageSetCorrect
-	6,  // 66: protobuf_test_messages.editions.proto2.groupfield:type_name -> protobuf_test_messages.editions.proto2.GroupField
-	39, // 67: protobuf_test_messages.editions.proto2.TestAllTypesProto2.MessageSetCorrectExtension1.message_set_extension:type_name -> protobuf_test_messages.editions.proto2.TestAllTypesProto2.MessageSetCorrectExtension1
-	40, // 68: protobuf_test_messages.editions.proto2.TestAllTypesProto2.MessageSetCorrectExtension2.message_set_extension:type_name -> protobuf_test_messages.editions.proto2.TestAllTypesProto2.MessageSetCorrectExtension2
-	41, // 69: protobuf_test_messages.editions.proto2.TestAllTypesProto2.ExtensionWithOneof.extension_with_oneof:type_name -> protobuf_test_messages.editions.proto2.TestAllTypesProto2.ExtensionWithOneof
-	46, // 70: protobuf_test_messages.editions.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension1.message_set_extension:type_name -> protobuf_test_messages.editions.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension1
-	47, // 71: protobuf_test_messages.editions.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2.message_set_extension:type_name -> protobuf_test_messages.editions.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2
-	72, // [72:72] is the sub-list for method output_type
-	72, // [72:72] is the sub-list for method input_type
-	66, // [66:72] is the sub-list for extension type_name
-	59, // [59:66] is the sub-list for extension extendee
-	0,  // [0:59] is the sub-list for field type_name
+	38, // 57: protobuf_test_messages.editions.proto2.TestAllTypesProto2.MessageSetCorrectExtension2.sub_msg:type_name -> protobuf_test_messages.editions.proto2.TestAllTypesProto2.MessageSetCorrect
+	12, // 58: protobuf_test_messages.editions.proto2.TestAllRequiredTypesProto2.NestedMessage.corecursive:type_name -> protobuf_test_messages.editions.proto2.TestAllRequiredTypesProto2
+	12, // 59: protobuf_test_messages.editions.proto2.TestAllRequiredTypesProto2.NestedMessage.optional_corecursive:type_name -> protobuf_test_messages.editions.proto2.TestAllRequiredTypesProto2
+	4,  // 60: protobuf_test_messages.editions.proto2.extension_int32:extendee -> protobuf_test_messages.editions.proto2.TestAllTypesProto2
+	4,  // 61: protobuf_test_messages.editions.proto2.extension_string:extendee -> protobuf_test_messages.editions.proto2.TestAllTypesProto2
+	4,  // 62: protobuf_test_messages.editions.proto2.extension_bytes:extendee -> protobuf_test_messages.editions.proto2.TestAllTypesProto2
+	4,  // 63: protobuf_test_messages.editions.proto2.groupfield:extendee -> protobuf_test_messages.editions.proto2.TestAllTypesProto2
+	38, // 64: protobuf_test_messages.editions.proto2.TestAllTypesProto2.MessageSetCorrectExtension1.message_set_extension:extendee -> protobuf_test_messages.editions.proto2.TestAllTypesProto2.MessageSetCorrect
+	38, // 65: protobuf_test_messages.editions.proto2.TestAllTypesProto2.MessageSetCorrectExtension2.message_set_extension:extendee -> protobuf_test_messages.editions.proto2.TestAllTypesProto2.MessageSetCorrect
+	38, // 66: protobuf_test_messages.editions.proto2.TestAllTypesProto2.ExtensionWithOneof.extension_with_oneof:extendee -> protobuf_test_messages.editions.proto2.TestAllTypesProto2.MessageSetCorrect
+	45, // 67: protobuf_test_messages.editions.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension1.message_set_extension:extendee -> protobuf_test_messages.editions.proto2.TestAllRequiredTypesProto2.MessageSetCorrect
+	45, // 68: protobuf_test_messages.editions.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2.message_set_extension:extendee -> protobuf_test_messages.editions.proto2.TestAllRequiredTypesProto2.MessageSetCorrect
+	6,  // 69: protobuf_test_messages.editions.proto2.groupfield:type_name -> protobuf_test_messages.editions.proto2.GroupField
+	39, // 70: protobuf_test_messages.editions.proto2.TestAllTypesProto2.MessageSetCorrectExtension1.message_set_extension:type_name -> protobuf_test_messages.editions.proto2.TestAllTypesProto2.MessageSetCorrectExtension1
+	40, // 71: protobuf_test_messages.editions.proto2.TestAllTypesProto2.MessageSetCorrectExtension2.message_set_extension:type_name -> protobuf_test_messages.editions.proto2.TestAllTypesProto2.MessageSetCorrectExtension2
+	41, // 72: protobuf_test_messages.editions.proto2.TestAllTypesProto2.ExtensionWithOneof.extension_with_oneof:type_name -> protobuf_test_messages.editions.proto2.TestAllTypesProto2.ExtensionWithOneof
+	46, // 73: protobuf_test_messages.editions.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension1.message_set_extension:type_name -> protobuf_test_messages.editions.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension1
+	47, // 74: protobuf_test_messages.editions.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2.message_set_extension:type_name -> protobuf_test_messages.editions.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2
+	75, // [75:75] is the sub-list for method output_type
+	75, // [75:75] is the sub-list for method input_type
+	69, // [69:75] is the sub-list for extension type_name
+	60, // [60:69] is the sub-list for extension extendee
+	0,  // [0:60] is the sub-list for field type_name
 }
 
 func init() { file_editions_golden_test_messages_proto2_editions_proto_init() }
@@ -3813,7 +3848,7 @@ func file_editions_golden_test_messages_proto2_editions_proto_init() {
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_editions_golden_test_messages_proto2_editions_proto_rawDesc), len(file_editions_golden_test_messages_proto2_editions_proto_rawDesc)),
 			NumEnums:      4,
 			NumMessages:   49,
-			NumExtensions: 7,
+			NumExtensions: 9,
 			NumServices:   0,
 		},
 		GoTypes:           file_editions_golden_test_messages_proto2_editions_proto_goTypes,

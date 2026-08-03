@@ -63,7 +63,7 @@ func (x ForeignEnumEditionUnstable) Number() protoreflect.EnumNumber {
 
 type ComplexMessage struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_D           int32                  `protobuf:"varint,1,opt,name=d"`
+	xxx_hidden_D           int32                  `protobuf:"fixed32,1,opt,name=d"`
 	XXX_raceDetectHookData protoimpl.RaceDetectHookData
 	XXX_presence           [1]uint32
 	unknownFields          protoimpl.UnknownFields
@@ -138,18 +138,21 @@ func (b0 ComplexMessage_builder) Build() *ComplexMessage {
 
 type TestAllTypesEditionUnstable struct {
 	state                              protoimpl.MessageState                    `protogen:"opaque.v1"`
-	xxx_hidden_OptionalInt32           int32                                     `protobuf:"varint,1,opt,name=optional_int32,json=optionalInt32"`
+	xxx_hidden_OptionalInt32           int32                                     `protobuf:"fixed32,1,opt,name=optional_int32,json=optionalInt32"`
 	xxx_hidden_OptionalForeignMessage  *ForeignMessageEditionUnstable            `protobuf:"bytes,2,opt,name=optional_foreign_message,json=optionalForeignMessage"`
 	xxx_hidden_OptionalForeignEnum     ForeignEnumEditionUnstable                `protobuf:"varint,3,opt,name=optional_foreign_enum,json=optionalForeignEnum,enum=protobuf_test_messages.edition_unstable.ForeignEnumEditionUnstable"`
 	xxx_hidden_RecursiveMessage        *TestAllTypesEditionUnstable              `protobuf:"bytes,4,opt,name=recursive_message,json=recursiveMessage"`
-	xxx_hidden_RepeatedInt32           []int32                                   `protobuf:"varint,5,rep,packed,name=repeated_int32,json=repeatedInt32"`
+	xxx_hidden_RepeatedInt32           []int32                                   `protobuf:"fixed32,5,rep,packed,name=repeated_int32,json=repeatedInt32"`
 	xxx_hidden_RepeatedForeignMessage  *[]*ForeignMessageEditionUnstable         `protobuf:"bytes,6,rep,name=repeated_foreign_message,json=repeatedForeignMessage"`
 	xxx_hidden_RepeatedForeignEnum     []ForeignEnumEditionUnstable              `protobuf:"varint,7,rep,packed,name=repeated_foreign_enum,json=repeatedForeignEnum,enum=protobuf_test_messages.edition_unstable.ForeignEnumEditionUnstable"`
-	xxx_hidden_MapInt32Int32           map[int32]int32                           `protobuf:"bytes,8,rep,name=map_int32_int32,json=mapInt32Int32" protobuf_key:"varint,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
+	xxx_hidden_MapInt32Int32           map[int32]int32                           `protobuf:"bytes,8,rep,name=map_int32_int32,json=mapInt32Int32" protobuf_key:"fixed32,1,opt,name=key" protobuf_val:"fixed32,2,opt,name=value"`
 	xxx_hidden_MapBoolBool             map[bool]bool                             `protobuf:"bytes,9,rep,name=map_bool_bool,json=mapBoolBool" protobuf_key:"varint,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
 	xxx_hidden_MapStringString         map[string]string                         `protobuf:"bytes,10,rep,name=map_string_string,json=mapStringString" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	xxx_hidden_MapStringForeignMessage map[string]*ForeignMessageEditionUnstable `protobuf:"bytes,11,rep,name=map_string_foreign_message,json=mapStringForeignMessage" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	xxx_hidden_MapStringForeignEnum    map[string]ForeignEnumEditionUnstable     `protobuf:"bytes,12,rep,name=map_string_foreign_enum,json=mapStringForeignEnum" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value,enum=protobuf_test_messages.edition_unstable.ForeignEnumEditionUnstable"`
+	xxx_hidden_OptionalBytes           []byte                                    `protobuf:"bytes,13,opt,name=optional_bytes,json=optionalBytes"`
+	xxx_hidden_RepeatedBytes           [][]byte                                  `protobuf:"bytes,14,rep,name=repeated_bytes,json=repeatedBytes"`
+	xxx_hidden_MapStringBytes          map[string][]byte                         `protobuf:"bytes,15,rep,name=map_string_bytes,json=mapStringBytes" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	XXX_raceDetectHookData             protoimpl.RaceDetectHookData
 	XXX_presence                       [1]uint32
 	extensionFields                    protoimpl.ExtensionFields
@@ -270,9 +273,30 @@ func (x *TestAllTypesEditionUnstable) GetMapStringForeignEnum() map[string]Forei
 	return nil
 }
 
+func (x *TestAllTypesEditionUnstable) GetOptionalBytes() []byte {
+	if x != nil {
+		return x.xxx_hidden_OptionalBytes
+	}
+	return nil
+}
+
+func (x *TestAllTypesEditionUnstable) GetRepeatedBytes() [][]byte {
+	if x != nil {
+		return x.xxx_hidden_RepeatedBytes
+	}
+	return nil
+}
+
+func (x *TestAllTypesEditionUnstable) GetMapStringBytes() map[string][]byte {
+	if x != nil {
+		return x.xxx_hidden_MapStringBytes
+	}
+	return nil
+}
+
 func (x *TestAllTypesEditionUnstable) SetOptionalInt32(v int32) {
 	x.xxx_hidden_OptionalInt32 = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 12)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 15)
 }
 
 func (x *TestAllTypesEditionUnstable) SetOptionalForeignMessage(v *ForeignMessageEditionUnstable) {
@@ -281,7 +305,7 @@ func (x *TestAllTypesEditionUnstable) SetOptionalForeignMessage(v *ForeignMessag
 
 func (x *TestAllTypesEditionUnstable) SetOptionalForeignEnum(v ForeignEnumEditionUnstable) {
 	x.xxx_hidden_OptionalForeignEnum = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 12)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 15)
 }
 
 func (x *TestAllTypesEditionUnstable) SetRecursiveMessage(v *TestAllTypesEditionUnstable) {
@@ -320,6 +344,22 @@ func (x *TestAllTypesEditionUnstable) SetMapStringForeignEnum(v map[string]Forei
 	x.xxx_hidden_MapStringForeignEnum = v
 }
 
+func (x *TestAllTypesEditionUnstable) SetOptionalBytes(v []byte) {
+	if v == nil {
+		v = []byte{}
+	}
+	x.xxx_hidden_OptionalBytes = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 12, 15)
+}
+
+func (x *TestAllTypesEditionUnstable) SetRepeatedBytes(v [][]byte) {
+	x.xxx_hidden_RepeatedBytes = v
+}
+
+func (x *TestAllTypesEditionUnstable) SetMapStringBytes(v map[string][]byte) {
+	x.xxx_hidden_MapStringBytes = v
+}
+
 func (x *TestAllTypesEditionUnstable) HasOptionalInt32() bool {
 	if x == nil {
 		return false
@@ -348,6 +388,13 @@ func (x *TestAllTypesEditionUnstable) HasRecursiveMessage() bool {
 	return x.xxx_hidden_RecursiveMessage != nil
 }
 
+func (x *TestAllTypesEditionUnstable) HasOptionalBytes() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 12)
+}
+
 func (x *TestAllTypesEditionUnstable) ClearOptionalInt32() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
 	x.xxx_hidden_OptionalInt32 = 0
@@ -364,6 +411,11 @@ func (x *TestAllTypesEditionUnstable) ClearOptionalForeignEnum() {
 
 func (x *TestAllTypesEditionUnstable) ClearRecursiveMessage() {
 	x.xxx_hidden_RecursiveMessage = nil
+}
+
+func (x *TestAllTypesEditionUnstable) ClearOptionalBytes() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 12)
+	x.xxx_hidden_OptionalBytes = nil
 }
 
 type TestAllTypesEditionUnstable_builder struct {
@@ -384,6 +436,10 @@ type TestAllTypesEditionUnstable_builder struct {
 	MapStringString         map[string]string
 	MapStringForeignMessage map[string]*ForeignMessageEditionUnstable
 	MapStringForeignEnum    map[string]ForeignEnumEditionUnstable
+	// bytes
+	OptionalBytes  []byte
+	RepeatedBytes  [][]byte
+	MapStringBytes map[string][]byte
 }
 
 func (b0 TestAllTypesEditionUnstable_builder) Build() *TestAllTypesEditionUnstable {
@@ -391,12 +447,12 @@ func (b0 TestAllTypesEditionUnstable_builder) Build() *TestAllTypesEditionUnstab
 	b, x := &b0, m0
 	_, _ = b, x
 	if b.OptionalInt32 != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 12)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 15)
 		x.xxx_hidden_OptionalInt32 = *b.OptionalInt32
 	}
 	x.xxx_hidden_OptionalForeignMessage = b.OptionalForeignMessage
 	if b.OptionalForeignEnum != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 12)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 15)
 		x.xxx_hidden_OptionalForeignEnum = *b.OptionalForeignEnum
 	}
 	x.xxx_hidden_RecursiveMessage = b.RecursiveMessage
@@ -408,12 +464,18 @@ func (b0 TestAllTypesEditionUnstable_builder) Build() *TestAllTypesEditionUnstab
 	x.xxx_hidden_MapStringString = b.MapStringString
 	x.xxx_hidden_MapStringForeignMessage = b.MapStringForeignMessage
 	x.xxx_hidden_MapStringForeignEnum = b.MapStringForeignEnum
+	if b.OptionalBytes != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 12, 15)
+		x.xxx_hidden_OptionalBytes = b.OptionalBytes
+	}
+	x.xxx_hidden_RepeatedBytes = b.RepeatedBytes
+	x.xxx_hidden_MapStringBytes = b.MapStringBytes
 	return m0
 }
 
 type ForeignMessageEditionUnstable struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_C           int32                  `protobuf:"varint,1,opt,name=c"`
+	xxx_hidden_C           int32                  `protobuf:"fixed32,1,opt,name=c"`
 	XXX_raceDetectHookData protoimpl.RaceDetectHookData
 	XXX_presence           [1]uint32
 	unknownFields          protoimpl.UnknownFields
@@ -492,14 +554,14 @@ var file_conformance_test_protos_test_messages_edition_unstable_proto_extTypes =
 		ExtensionType: (*int32)(nil),
 		Field:         120,
 		Name:          "protobuf_test_messages.edition_unstable.extension_int32",
-		Tag:           "varint,120,opt,name=extension_int32",
+		Tag:           "fixed32,120,opt,name=extension_int32",
 		Filename:      "conformance/test_protos/test_messages_edition_unstable.proto",
 	},
 }
 
 // Extension fields to TestAllTypesEditionUnstable.
 var (
-	// optional int32 extension_int32 = 120;
+	// optional sfixed32 extension_int32 = 120;
 	E_ExtensionInt32 = &file_conformance_test_protos_test_messages_edition_unstable_proto_extTypes[0]
 )
 
@@ -509,13 +571,13 @@ const file_conformance_test_protos_test_messages_edition_unstable_proto_rawDesc 
 	"\n" +
 	"<conformance/test_protos/test_messages_edition_unstable.proto\x12'protobuf_test_messages.edition_unstable\"\x1e\n" +
 	"\x0eComplexMessage\x12\f\n" +
-	"\x01d\x18\x01 \x01(\x05R\x01d\"\x99\x0f\n" +
+	"\x01d\x18\x01 \x01(\x0fR\x01d\"\xaf\x11\n" +
 	"\x1bTestAllTypesEditionUnstable\x12%\n" +
-	"\x0eoptional_int32\x18\x01 \x01(\x05R\roptionalInt32\x12\x87\x01\n" +
+	"\x0eoptional_int32\x18\x01 \x01(\x0fR\roptionalInt32\x12\x87\x01\n" +
 	"\x18optional_foreign_message\x18\x02 \x01(\v2F.protobuf_test_messages.edition_unstable.ForeignMessageEditionUnstableB\x05\xaa\x01\x02(\x01R\x16optionalForeignMessage\x12w\n" +
 	"\x15optional_foreign_enum\x18\x03 \x01(\x0e2C.protobuf_test_messages.edition_unstable.ForeignEnumEditionUnstableR\x13optionalForeignEnum\x12x\n" +
 	"\x11recursive_message\x18\x04 \x01(\v2D.protobuf_test_messages.edition_unstable.TestAllTypesEditionUnstableB\x05\xaa\x01\x02(\x01R\x10recursiveMessage\x12%\n" +
-	"\x0erepeated_int32\x18\x05 \x03(\x05R\rrepeatedInt32\x12\x87\x01\n" +
+	"\x0erepeated_int32\x18\x05 \x03(\x0fR\rrepeatedInt32\x12\x87\x01\n" +
 	"\x18repeated_foreign_message\x18\x06 \x03(\v2F.protobuf_test_messages.edition_unstable.ForeignMessageEditionUnstableB\x05\xaa\x01\x02(\x01R\x16repeatedForeignMessage\x12w\n" +
 	"\x15repeated_foreign_enum\x18\a \x03(\x0e2C.protobuf_test_messages.edition_unstable.ForeignEnumEditionUnstableR\x13repeatedForeignEnum\x12\x7f\n" +
 	"\x0fmap_int32_int32\x18\b \x03(\v2W.protobuf_test_messages.edition_unstable.TestAllTypesEditionUnstable.MapInt32Int32EntryR\rmapInt32Int32\x12y\n" +
@@ -523,10 +585,13 @@ const file_conformance_test_protos_test_messages_edition_unstable_proto_rawDesc 
 	"\x11map_string_string\x18\n" +
 	" \x03(\v2Y.protobuf_test_messages.edition_unstable.TestAllTypesEditionUnstable.MapStringStringEntryR\x0fmapStringString\x12\x9e\x01\n" +
 	"\x1amap_string_foreign_message\x18\v \x03(\v2a.protobuf_test_messages.edition_unstable.TestAllTypesEditionUnstable.MapStringForeignMessageEntryR\x17mapStringForeignMessage\x12\x95\x01\n" +
-	"\x17map_string_foreign_enum\x18\f \x03(\v2^.protobuf_test_messages.edition_unstable.TestAllTypesEditionUnstable.MapStringForeignEnumEntryR\x14mapStringForeignEnum\x1a@\n" +
+	"\x17map_string_foreign_enum\x18\f \x03(\v2^.protobuf_test_messages.edition_unstable.TestAllTypesEditionUnstable.MapStringForeignEnumEntryR\x14mapStringForeignEnum\x12%\n" +
+	"\x0eoptional_bytes\x18\r \x01(\fR\roptionalBytes\x12%\n" +
+	"\x0erepeated_bytes\x18\x0e \x03(\fR\rrepeatedBytes\x12\x82\x01\n" +
+	"\x10map_string_bytes\x18\x0f \x03(\v2X.protobuf_test_messages.edition_unstable.TestAllTypesEditionUnstable.MapStringBytesEntryR\x0emapStringBytes\x1a@\n" +
 	"\x12MapInt32Int32Entry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\x05R\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\x05R\x05value:\x028\x01\x1a>\n" +
+	"\x03key\x18\x01 \x01(\x0fR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\x0fR\x05value:\x028\x01\x1a>\n" +
 	"\x10MapBoolBoolEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\bR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\bR\x05value:\x028\x01\x1aB\n" +
@@ -538,18 +603,21 @@ const file_conformance_test_protos_test_messages_edition_unstable_proto_rawDesc 
 	"\x05value\x18\x02 \x01(\v2F.protobuf_test_messages.edition_unstable.ForeignMessageEditionUnstableR\x05value:\x028\x01\x1a\x8c\x01\n" +
 	"\x19MapStringForeignEnumEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12Y\n" +
-	"\x05value\x18\x02 \x01(\x0e2C.protobuf_test_messages.edition_unstable.ForeignEnumEditionUnstableR\x05value:\x028\x01*\x05\bx\x10\xc9\x01\"-\n" +
+	"\x05value\x18\x02 \x01(\x0e2C.protobuf_test_messages.edition_unstable.ForeignEnumEditionUnstableR\x05value:\x028\x01\x1aA\n" +
+	"\x13MapStringBytesEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\fR\x05value:\x028\x01*\x05\bx\x10\xc9\x01\"-\n" +
 	"\x1dForeignMessageEditionUnstable\x12\f\n" +
-	"\x01c\x18\x01 \x01(\x05R\x01c*O\n" +
+	"\x01c\x18\x01 \x01(\x0fR\x01c*O\n" +
 	"\x1aForeignEnumEditionUnstable\x12\x0f\n" +
 	"\vFOREIGN_FOO\x10\x00\x12\x0f\n" +
 	"\vFOREIGN_BAR\x10\x01\x12\x0f\n" +
 	"\vFOREIGN_BAZ\x10\x02:m\n" +
-	"\x0fextension_int32\x12D.protobuf_test_messages.edition_unstable.TestAllTypesEditionUnstable\x18x \x01(\x05R\x0eextensionInt32BK\n" +
+	"\x0fextension_int32\x12D.protobuf_test_messages.edition_unstable.TestAllTypesEditionUnstable\x18x \x01(\x0fR\x0eextensionInt32BK\n" +
 	"2com.google.protobuf_test_messages.edition_unstable\xa2\x02\x0fEditionUnstable\x92\x03\x02(\x02b\beditionsp\x8fN"
 
 var file_conformance_test_protos_test_messages_edition_unstable_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_conformance_test_protos_test_messages_edition_unstable_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_conformance_test_protos_test_messages_edition_unstable_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_conformance_test_protos_test_messages_edition_unstable_proto_goTypes = []any{
 	(ForeignEnumEditionUnstable)(0),       // 0: protobuf_test_messages.edition_unstable.ForeignEnumEditionUnstable
 	(*ComplexMessage)(nil),                // 1: protobuf_test_messages.edition_unstable.ComplexMessage
@@ -560,6 +628,7 @@ var file_conformance_test_protos_test_messages_edition_unstable_proto_goTypes = 
 	nil,                                   // 6: protobuf_test_messages.edition_unstable.TestAllTypesEditionUnstable.MapStringStringEntry
 	nil,                                   // 7: protobuf_test_messages.edition_unstable.TestAllTypesEditionUnstable.MapStringForeignMessageEntry
 	nil,                                   // 8: protobuf_test_messages.edition_unstable.TestAllTypesEditionUnstable.MapStringForeignEnumEntry
+	nil,                                   // 9: protobuf_test_messages.edition_unstable.TestAllTypesEditionUnstable.MapStringBytesEntry
 }
 var file_conformance_test_protos_test_messages_edition_unstable_proto_depIdxs = []int32{
 	3,  // 0: protobuf_test_messages.edition_unstable.TestAllTypesEditionUnstable.optional_foreign_message:type_name -> protobuf_test_messages.edition_unstable.ForeignMessageEditionUnstable
@@ -572,14 +641,15 @@ var file_conformance_test_protos_test_messages_edition_unstable_proto_depIdxs = 
 	6,  // 7: protobuf_test_messages.edition_unstable.TestAllTypesEditionUnstable.map_string_string:type_name -> protobuf_test_messages.edition_unstable.TestAllTypesEditionUnstable.MapStringStringEntry
 	7,  // 8: protobuf_test_messages.edition_unstable.TestAllTypesEditionUnstable.map_string_foreign_message:type_name -> protobuf_test_messages.edition_unstable.TestAllTypesEditionUnstable.MapStringForeignMessageEntry
 	8,  // 9: protobuf_test_messages.edition_unstable.TestAllTypesEditionUnstable.map_string_foreign_enum:type_name -> protobuf_test_messages.edition_unstable.TestAllTypesEditionUnstable.MapStringForeignEnumEntry
-	3,  // 10: protobuf_test_messages.edition_unstable.TestAllTypesEditionUnstable.MapStringForeignMessageEntry.value:type_name -> protobuf_test_messages.edition_unstable.ForeignMessageEditionUnstable
-	0,  // 11: protobuf_test_messages.edition_unstable.TestAllTypesEditionUnstable.MapStringForeignEnumEntry.value:type_name -> protobuf_test_messages.edition_unstable.ForeignEnumEditionUnstable
-	2,  // 12: protobuf_test_messages.edition_unstable.extension_int32:extendee -> protobuf_test_messages.edition_unstable.TestAllTypesEditionUnstable
-	13, // [13:13] is the sub-list for method output_type
-	13, // [13:13] is the sub-list for method input_type
-	13, // [13:13] is the sub-list for extension type_name
-	12, // [12:13] is the sub-list for extension extendee
-	0,  // [0:12] is the sub-list for field type_name
+	9,  // 10: protobuf_test_messages.edition_unstable.TestAllTypesEditionUnstable.map_string_bytes:type_name -> protobuf_test_messages.edition_unstable.TestAllTypesEditionUnstable.MapStringBytesEntry
+	3,  // 11: protobuf_test_messages.edition_unstable.TestAllTypesEditionUnstable.MapStringForeignMessageEntry.value:type_name -> protobuf_test_messages.edition_unstable.ForeignMessageEditionUnstable
+	0,  // 12: protobuf_test_messages.edition_unstable.TestAllTypesEditionUnstable.MapStringForeignEnumEntry.value:type_name -> protobuf_test_messages.edition_unstable.ForeignEnumEditionUnstable
+	2,  // 13: protobuf_test_messages.edition_unstable.extension_int32:extendee -> protobuf_test_messages.edition_unstable.TestAllTypesEditionUnstable
+	14, // [14:14] is the sub-list for method output_type
+	14, // [14:14] is the sub-list for method input_type
+	14, // [14:14] is the sub-list for extension type_name
+	13, // [13:14] is the sub-list for extension extendee
+	0,  // [0:13] is the sub-list for field type_name
 }
 
 func init() { file_conformance_test_protos_test_messages_edition_unstable_proto_init() }
@@ -593,7 +663,7 @@ func file_conformance_test_protos_test_messages_edition_unstable_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_conformance_test_protos_test_messages_edition_unstable_proto_rawDesc), len(file_conformance_test_protos_test_messages_edition_unstable_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   8,
+			NumMessages:   9,
 			NumExtensions: 1,
 			NumServices:   0,
 		},

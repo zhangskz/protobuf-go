@@ -271,9 +271,11 @@ type TestAllTypesEdition2023 struct {
 	//	*TestAllTypesEdition2023_OneofFloat
 	//	*TestAllTypesEdition2023_OneofDouble
 	//	*TestAllTypesEdition2023_OneofEnum
-	OneofField      isTestAllTypesEdition2023_OneofField   `protobuf_oneof:"oneof_field"`
-	Groupliketype   *TestAllTypesEdition2023_GroupLikeType `protobuf:"group,201,opt,name=GroupLikeType,json=groupliketype" json:"groupliketype,omitempty"`
-	DelimitedField  *TestAllTypesEdition2023_GroupLikeType `protobuf:"group,202,opt,name=GroupLikeType,json=delimitedField" json:"delimited_field,omitempty"`
+	OneofField     isTestAllTypesEdition2023_OneofField   `protobuf_oneof:"oneof_field"`
+	Groupliketype  *TestAllTypesEdition2023_GroupLikeType `protobuf:"group,201,opt,name=GroupLikeType,json=groupliketype" json:"groupliketype,omitempty"`
+	DelimitedField *TestAllTypesEdition2023_GroupLikeType `protobuf:"group,202,opt,name=GroupLikeType,json=delimitedField" json:"delimited_field,omitempty"`
+	// recursive
+	MapRecursive    map[int32]*TestAllTypesEdition2023 `protobuf:"bytes,301,rep,name=map_recursive,json=mapRecursive" json:"map_recursive,omitempty" protobuf_key:"varint,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	extensionFields protoimpl.ExtensionFields
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
@@ -1041,6 +1043,13 @@ func (x *TestAllTypesEdition2023) GetDelimitedField() *TestAllTypesEdition2023_G
 	return nil
 }
 
+func (x *TestAllTypesEdition2023) GetMapRecursive() map[int32]*TestAllTypesEdition2023 {
+	if x != nil {
+		return x.MapRecursive
+	}
+	return nil
+}
+
 type isTestAllTypesEdition2023_OneofField interface {
 	isTestAllTypesEdition2023_OneofField()
 }
@@ -1303,6 +1312,22 @@ var file_conformance_test_protos_test_messages_edition2023_proto_extTypes = []pr
 	},
 	{
 		ExtendedType:  (*TestAllTypesEdition2023)(nil),
+		ExtensionType: (*string)(nil),
+		Field:         133,
+		Name:          "protobuf_test_messages.editions.extension_string",
+		Tag:           "bytes,133,opt,name=extension_string",
+		Filename:      "conformance/test_protos/test_messages_edition2023.proto",
+	},
+	{
+		ExtendedType:  (*TestAllTypesEdition2023)(nil),
+		ExtensionType: ([]byte)(nil),
+		Field:         134,
+		Name:          "protobuf_test_messages.editions.extension_bytes",
+		Tag:           "bytes,134,opt,name=extension_bytes",
+		Filename:      "conformance/test_protos/test_messages_edition2023.proto",
+	},
+	{
+		ExtendedType:  (*TestAllTypesEdition2023)(nil),
 		ExtensionType: (*GroupLikeType)(nil),
 		Field:         121,
 		Name:          "protobuf_test_messages.editions.groupliketype",
@@ -1323,10 +1348,14 @@ var file_conformance_test_protos_test_messages_edition2023_proto_extTypes = []pr
 var (
 	// optional int32 extension_int32 = 120;
 	E_ExtensionInt32 = &file_conformance_test_protos_test_messages_edition2023_proto_extTypes[0]
+	// optional string extension_string = 133;
+	E_ExtensionString = &file_conformance_test_protos_test_messages_edition2023_proto_extTypes[1]
+	// optional bytes extension_bytes = 134;
+	E_ExtensionBytes = &file_conformance_test_protos_test_messages_edition2023_proto_extTypes[2]
 	// optional protobuf_test_messages.editions.GroupLikeType groupliketype = 121;
-	E_Groupliketype = &file_conformance_test_protos_test_messages_edition2023_proto_extTypes[1]
+	E_Groupliketype = &file_conformance_test_protos_test_messages_edition2023_proto_extTypes[3]
 	// optional protobuf_test_messages.editions.GroupLikeType delimited_ext = 122;
-	E_DelimitedExt = &file_conformance_test_protos_test_messages_edition2023_proto_extTypes[2]
+	E_DelimitedExt = &file_conformance_test_protos_test_messages_edition2023_proto_extTypes[4]
 )
 
 var File_conformance_test_protos_test_messages_edition2023_proto protoreflect.FileDescriptor
@@ -1335,7 +1364,7 @@ const file_conformance_test_protos_test_messages_edition2023_proto_rawDesc = "" 
 	"\n" +
 	"7conformance/test_protos/test_messages_edition2023.proto\x12\x1fprotobuf_test_messages.editions\"\x1e\n" +
 	"\x0eComplexMessage\x12\f\n" +
-	"\x01d\x18\x01 \x01(\x05R\x01d\"\x9fF\n" +
+	"\x01d\x18\x01 \x01(\x05R\x01d\"\x8cH\n" +
 	"\x17TestAllTypesEdition2023\x12%\n" +
 	"\x0eoptional_int32\x18\x01 \x01(\x05R\roptionalInt32\x12%\n" +
 	"\x0eoptional_int64\x18\x02 \x01(\x03R\roptionalInt64\x12'\n" +
@@ -1443,7 +1472,8 @@ const file_conformance_test_protos_test_messages_edition2023_proto_rawDesc = "" 
 	"\n" +
 	"oneof_enum\x18w \x01(\x0e2C.protobuf_test_messages.editions.TestAllTypesEdition2023.NestedEnumH\x00R\toneofEnum\x12m\n" +
 	"\rgroupliketype\x18\xc9\x01 \x01(\v2F.protobuf_test_messages.editions.TestAllTypesEdition2023.GroupLikeTypeR\rgroupliketype\x12p\n" +
-	"\x0fdelimited_field\x18\xca\x01 \x01(\v2F.protobuf_test_messages.editions.TestAllTypesEdition2023.GroupLikeTypeR\x0edelimitedField\x1a\x80\x01\n" +
+	"\x0fdelimited_field\x18\xca\x01 \x01(\v2F.protobuf_test_messages.editions.TestAllTypesEdition2023.GroupLikeTypeR\x0edelimitedField\x12p\n" +
+	"\rmap_recursive\x18\xad\x02 \x03(\v2J.protobuf_test_messages.editions.TestAllTypesEdition2023.MapRecursiveEntryR\fmapRecursive\x1a\x80\x01\n" +
 	"\rNestedMessage\x12\f\n" +
 	"\x01a\x18\x01 \x01(\x05R\x01a\x12a\n" +
 	"\vcorecursive\x18\x02 \x01(\v28.protobuf_test_messages.editions.TestAllTypesEdition2023B\x05\xaa\x01\x02(\x01R\vcorecursive\x1a@\n" +
@@ -1507,7 +1537,10 @@ const file_conformance_test_protos_test_messages_edition2023_proto_rawDesc = "" 
 	"\rGroupLikeType\x12 \n" +
 	"\vgroup_int32\x18\xca\x01 \x01(\x05R\n" +
 	"groupInt32\x12\"\n" +
-	"\fgroup_uint32\x18\xcb\x01 \x01(\rR\vgroupUint32\"9\n" +
+	"\fgroup_uint32\x18\xcb\x01 \x01(\rR\vgroupUint32\x1ay\n" +
+	"\x11MapRecursiveEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\x05R\x03key\x12N\n" +
+	"\x05value\x18\x02 \x01(\v28.protobuf_test_messages.editions.TestAllTypesEdition2023R\x05value:\x028\x01\"9\n" +
 	"\n" +
 	"NestedEnum\x12\a\n" +
 	"\x03FOO\x10\x00\x12\a\n" +
@@ -1523,7 +1556,9 @@ const file_conformance_test_protos_test_messages_edition2023_proto_rawDesc = "" 
 	"\vFOREIGN_FOO\x10\x00\x12\x0f\n" +
 	"\vFOREIGN_BAR\x10\x01\x12\x0f\n" +
 	"\vFOREIGN_BAZ\x10\x02:a\n" +
-	"\x0fextension_int32\x128.protobuf_test_messages.editions.TestAllTypesEdition2023\x18x \x01(\x05R\x0eextensionInt32:\x8e\x01\n" +
+	"\x0fextension_int32\x128.protobuf_test_messages.editions.TestAllTypesEdition2023\x18x \x01(\x05R\x0eextensionInt32:d\n" +
+	"\x10extension_string\x128.protobuf_test_messages.editions.TestAllTypesEdition2023\x18\x85\x01 \x01(\tR\x0fextensionString:b\n" +
+	"\x0fextension_bytes\x128.protobuf_test_messages.editions.TestAllTypesEdition2023\x18\x86\x01 \x01(\fR\x0eextensionBytes:\x8e\x01\n" +
 	"\rgroupliketype\x128.protobuf_test_messages.editions.TestAllTypesEdition2023\x18y \x01(\v2..protobuf_test_messages.editions.GroupLikeTypeR\rgroupliketype:\x8d\x01\n" +
 	"\rdelimited_ext\x128.protobuf_test_messages.editions.TestAllTypesEdition2023\x18z \x01(\v2..protobuf_test_messages.editions.GroupLikeTypeR\fdelimitedExtBA\n" +
 	"-com.google.protobuf_test_messages.edition2023P\x01\xa2\x02\bEditions\x92\x03\x02(\x02b\beditionsp\xe8\a"
@@ -1541,7 +1576,7 @@ func file_conformance_test_protos_test_messages_edition2023_proto_rawDescGZIP() 
 }
 
 var file_conformance_test_protos_test_messages_edition2023_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_conformance_test_protos_test_messages_edition2023_proto_msgTypes = make([]protoimpl.MessageInfo, 25)
+var file_conformance_test_protos_test_messages_edition2023_proto_msgTypes = make([]protoimpl.MessageInfo, 26)
 var file_conformance_test_protos_test_messages_edition2023_proto_goTypes = []any{
 	(ForeignEnumEdition2023)(0),                   // 0: protobuf_test_messages.editions.ForeignEnumEdition2023
 	(TestAllTypesEdition2023_NestedEnum)(0),       // 1: protobuf_test_messages.editions.TestAllTypesEdition2023.NestedEnum
@@ -1570,6 +1605,7 @@ var file_conformance_test_protos_test_messages_edition2023_proto_goTypes = []any
 	nil, // 24: protobuf_test_messages.editions.TestAllTypesEdition2023.MapStringNestedEnumEntry
 	nil, // 25: protobuf_test_messages.editions.TestAllTypesEdition2023.MapStringForeignEnumEntry
 	(*TestAllTypesEdition2023_GroupLikeType)(nil), // 26: protobuf_test_messages.editions.TestAllTypesEdition2023.GroupLikeType
+	nil, // 27: protobuf_test_messages.editions.TestAllTypesEdition2023.MapRecursiveEntry
 }
 var file_conformance_test_protos_test_messages_edition2023_proto_depIdxs = []int32{
 	6,  // 0: protobuf_test_messages.editions.TestAllTypesEdition2023.optional_nested_message:type_name -> protobuf_test_messages.editions.TestAllTypesEdition2023.NestedMessage
@@ -1606,21 +1642,25 @@ var file_conformance_test_protos_test_messages_edition2023_proto_depIdxs = []int
 	1,  // 31: protobuf_test_messages.editions.TestAllTypesEdition2023.oneof_enum:type_name -> protobuf_test_messages.editions.TestAllTypesEdition2023.NestedEnum
 	26, // 32: protobuf_test_messages.editions.TestAllTypesEdition2023.groupliketype:type_name -> protobuf_test_messages.editions.TestAllTypesEdition2023.GroupLikeType
 	26, // 33: protobuf_test_messages.editions.TestAllTypesEdition2023.delimited_field:type_name -> protobuf_test_messages.editions.TestAllTypesEdition2023.GroupLikeType
-	3,  // 34: protobuf_test_messages.editions.TestAllTypesEdition2023.NestedMessage.corecursive:type_name -> protobuf_test_messages.editions.TestAllTypesEdition2023
-	6,  // 35: protobuf_test_messages.editions.TestAllTypesEdition2023.MapStringNestedMessageEntry.value:type_name -> protobuf_test_messages.editions.TestAllTypesEdition2023.NestedMessage
-	4,  // 36: protobuf_test_messages.editions.TestAllTypesEdition2023.MapStringForeignMessageEntry.value:type_name -> protobuf_test_messages.editions.ForeignMessageEdition2023
-	1,  // 37: protobuf_test_messages.editions.TestAllTypesEdition2023.MapStringNestedEnumEntry.value:type_name -> protobuf_test_messages.editions.TestAllTypesEdition2023.NestedEnum
-	0,  // 38: protobuf_test_messages.editions.TestAllTypesEdition2023.MapStringForeignEnumEntry.value:type_name -> protobuf_test_messages.editions.ForeignEnumEdition2023
-	3,  // 39: protobuf_test_messages.editions.extension_int32:extendee -> protobuf_test_messages.editions.TestAllTypesEdition2023
-	3,  // 40: protobuf_test_messages.editions.groupliketype:extendee -> protobuf_test_messages.editions.TestAllTypesEdition2023
-	3,  // 41: protobuf_test_messages.editions.delimited_ext:extendee -> protobuf_test_messages.editions.TestAllTypesEdition2023
-	5,  // 42: protobuf_test_messages.editions.groupliketype:type_name -> protobuf_test_messages.editions.GroupLikeType
-	5,  // 43: protobuf_test_messages.editions.delimited_ext:type_name -> protobuf_test_messages.editions.GroupLikeType
-	44, // [44:44] is the sub-list for method output_type
-	44, // [44:44] is the sub-list for method input_type
-	42, // [42:44] is the sub-list for extension type_name
-	39, // [39:42] is the sub-list for extension extendee
-	0,  // [0:39] is the sub-list for field type_name
+	27, // 34: protobuf_test_messages.editions.TestAllTypesEdition2023.map_recursive:type_name -> protobuf_test_messages.editions.TestAllTypesEdition2023.MapRecursiveEntry
+	3,  // 35: protobuf_test_messages.editions.TestAllTypesEdition2023.NestedMessage.corecursive:type_name -> protobuf_test_messages.editions.TestAllTypesEdition2023
+	6,  // 36: protobuf_test_messages.editions.TestAllTypesEdition2023.MapStringNestedMessageEntry.value:type_name -> protobuf_test_messages.editions.TestAllTypesEdition2023.NestedMessage
+	4,  // 37: protobuf_test_messages.editions.TestAllTypesEdition2023.MapStringForeignMessageEntry.value:type_name -> protobuf_test_messages.editions.ForeignMessageEdition2023
+	1,  // 38: protobuf_test_messages.editions.TestAllTypesEdition2023.MapStringNestedEnumEntry.value:type_name -> protobuf_test_messages.editions.TestAllTypesEdition2023.NestedEnum
+	0,  // 39: protobuf_test_messages.editions.TestAllTypesEdition2023.MapStringForeignEnumEntry.value:type_name -> protobuf_test_messages.editions.ForeignEnumEdition2023
+	3,  // 40: protobuf_test_messages.editions.TestAllTypesEdition2023.MapRecursiveEntry.value:type_name -> protobuf_test_messages.editions.TestAllTypesEdition2023
+	3,  // 41: protobuf_test_messages.editions.extension_int32:extendee -> protobuf_test_messages.editions.TestAllTypesEdition2023
+	3,  // 42: protobuf_test_messages.editions.extension_string:extendee -> protobuf_test_messages.editions.TestAllTypesEdition2023
+	3,  // 43: protobuf_test_messages.editions.extension_bytes:extendee -> protobuf_test_messages.editions.TestAllTypesEdition2023
+	3,  // 44: protobuf_test_messages.editions.groupliketype:extendee -> protobuf_test_messages.editions.TestAllTypesEdition2023
+	3,  // 45: protobuf_test_messages.editions.delimited_ext:extendee -> protobuf_test_messages.editions.TestAllTypesEdition2023
+	5,  // 46: protobuf_test_messages.editions.groupliketype:type_name -> protobuf_test_messages.editions.GroupLikeType
+	5,  // 47: protobuf_test_messages.editions.delimited_ext:type_name -> protobuf_test_messages.editions.GroupLikeType
+	48, // [48:48] is the sub-list for method output_type
+	48, // [48:48] is the sub-list for method input_type
+	46, // [46:48] is the sub-list for extension type_name
+	41, // [41:46] is the sub-list for extension extendee
+	0,  // [0:41] is the sub-list for field type_name
 }
 
 func init() { file_conformance_test_protos_test_messages_edition2023_proto_init() }
@@ -1645,8 +1685,8 @@ func file_conformance_test_protos_test_messages_edition2023_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_conformance_test_protos_test_messages_edition2023_proto_rawDesc), len(file_conformance_test_protos_test_messages_edition2023_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   25,
-			NumExtensions: 3,
+			NumMessages:   26,
+			NumExtensions: 5,
 			NumServices:   0,
 		},
 		GoTypes:           file_conformance_test_protos_test_messages_edition2023_proto_goTypes,

@@ -22,6 +22,7 @@ import (
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	anypb "google.golang.org/protobuf/types/known/anypb"
 	durationpb "google.golang.org/protobuf/types/known/durationpb"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	fieldmaskpb "google.golang.org/protobuf/types/known/fieldmaskpb"
 	structpb "google.golang.org/protobuf/types/known/structpb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
@@ -381,6 +382,7 @@ type TestAllTypesProto3 struct {
 	OptionalAny           *anypb.Any                `protobuf:"bytes,305,opt,name=optional_any,json=optionalAny,proto3" json:"optional_any,omitempty"`
 	OptionalValue         *structpb.Value           `protobuf:"bytes,306,opt,name=optional_value,json=optionalValue,proto3" json:"optional_value,omitempty"`
 	OptionalNullValue     structpb.NullValue        `protobuf:"varint,307,opt,name=optional_null_value,json=optionalNullValue,proto3,enum=google.protobuf.NullValue" json:"optional_null_value,omitempty"`
+	OptionalEmpty         *emptypb.Empty            `protobuf:"bytes,308,opt,name=optional_empty,json=optionalEmpty,proto3" json:"optional_empty,omitempty"`
 	RepeatedDuration      []*durationpb.Duration    `protobuf:"bytes,311,rep,name=repeated_duration,json=repeatedDuration,proto3" json:"repeated_duration,omitempty"`
 	RepeatedTimestamp     []*timestamppb.Timestamp  `protobuf:"bytes,312,rep,name=repeated_timestamp,json=repeatedTimestamp,proto3" json:"repeated_timestamp,omitempty"`
 	RepeatedFieldmask     []*fieldmaskpb.FieldMask  `protobuf:"bytes,313,rep,name=repeated_fieldmask,json=repeatedFieldmask,proto3" json:"repeated_fieldmask,omitempty"`
@@ -388,6 +390,7 @@ type TestAllTypesProto3 struct {
 	RepeatedAny           []*anypb.Any              `protobuf:"bytes,315,rep,name=repeated_any,json=repeatedAny,proto3" json:"repeated_any,omitempty"`
 	RepeatedValue         []*structpb.Value         `protobuf:"bytes,316,rep,name=repeated_value,json=repeatedValue,proto3" json:"repeated_value,omitempty"`
 	RepeatedListValue     []*structpb.ListValue     `protobuf:"bytes,317,rep,name=repeated_list_value,json=repeatedListValue,proto3" json:"repeated_list_value,omitempty"`
+	RepeatedEmpty         []*emptypb.Empty          `protobuf:"bytes,318,rep,name=repeated_empty,json=repeatedEmpty,proto3" json:"repeated_empty,omitempty"`
 	// Test field-name-to-JSON-name convention.
 	// (protobuf says names can be any valid C/C++ identifier.)
 	Fieldname1    int32 `protobuf:"varint,401,opt,name=fieldname1,proto3" json:"fieldname1,omitempty"`
@@ -1351,6 +1354,13 @@ func (x *TestAllTypesProto3) GetOptionalNullValue() structpb.NullValue {
 	return structpb.NullValue(0)
 }
 
+func (x *TestAllTypesProto3) GetOptionalEmpty() *emptypb.Empty {
+	if x != nil {
+		return x.OptionalEmpty
+	}
+	return nil
+}
+
 func (x *TestAllTypesProto3) GetRepeatedDuration() []*durationpb.Duration {
 	if x != nil {
 		return x.RepeatedDuration
@@ -1396,6 +1406,13 @@ func (x *TestAllTypesProto3) GetRepeatedValue() []*structpb.Value {
 func (x *TestAllTypesProto3) GetRepeatedListValue() []*structpb.ListValue {
 	if x != nil {
 		return x.RepeatedListValue
+	}
+	return nil
+}
+
+func (x *TestAllTypesProto3) GetRepeatedEmpty() []*emptypb.Empty {
+	if x != nil {
+		return x.RepeatedEmpty
 	}
 	return nil
 }
@@ -1762,7 +1779,7 @@ var File_google_protobuf_test_messages_proto3_proto protoreflect.FileDescriptor
 
 const file_google_protobuf_test_messages_proto3_proto_rawDesc = "" +
 	"\n" +
-	"*google/protobuf/test_messages_proto3.proto\x12\x1dprotobuf_test_messages.proto3\x1a\x19google/protobuf/any.proto\x1a\x1egoogle/protobuf/duration.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\xb3[\n" +
+	"*google/protobuf/test_messages_proto3.proto\x12\x1dprotobuf_test_messages.proto3\x1a\x19google/protobuf/any.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\xb3\\\n" +
 	"\x12TestAllTypesProto3\x12%\n" +
 	"\x0eoptional_int32\x18\x01 \x01(\x05R\roptionalInt32\x12%\n" +
 	"\x0eoptional_int64\x18\x02 \x01(\x03R\roptionalInt64\x12'\n" +
@@ -1895,14 +1912,16 @@ const file_google_protobuf_test_messages_proto3_proto_rawDesc = "" +
 	"\x0foptional_struct\x18\xb0\x02 \x01(\v2\x17.google.protobuf.StructR\x0eoptionalStruct\x128\n" +
 	"\foptional_any\x18\xb1\x02 \x01(\v2\x14.google.protobuf.AnyR\voptionalAny\x12>\n" +
 	"\x0eoptional_value\x18\xb2\x02 \x01(\v2\x16.google.protobuf.ValueR\roptionalValue\x12K\n" +
-	"\x13optional_null_value\x18\xb3\x02 \x01(\x0e2\x1a.google.protobuf.NullValueR\x11optionalNullValue\x12G\n" +
+	"\x13optional_null_value\x18\xb3\x02 \x01(\x0e2\x1a.google.protobuf.NullValueR\x11optionalNullValue\x12>\n" +
+	"\x0eoptional_empty\x18\xb4\x02 \x01(\v2\x16.google.protobuf.EmptyR\roptionalEmpty\x12G\n" +
 	"\x11repeated_duration\x18\xb7\x02 \x03(\v2\x19.google.protobuf.DurationR\x10repeatedDuration\x12J\n" +
 	"\x12repeated_timestamp\x18\xb8\x02 \x03(\v2\x1a.google.protobuf.TimestampR\x11repeatedTimestamp\x12J\n" +
 	"\x12repeated_fieldmask\x18\xb9\x02 \x03(\v2\x1a.google.protobuf.FieldMaskR\x11repeatedFieldmask\x12A\n" +
 	"\x0frepeated_struct\x18\xc4\x02 \x03(\v2\x17.google.protobuf.StructR\x0erepeatedStruct\x128\n" +
 	"\frepeated_any\x18\xbb\x02 \x03(\v2\x14.google.protobuf.AnyR\vrepeatedAny\x12>\n" +
 	"\x0erepeated_value\x18\xbc\x02 \x03(\v2\x16.google.protobuf.ValueR\rrepeatedValue\x12K\n" +
-	"\x13repeated_list_value\x18\xbd\x02 \x03(\v2\x1a.google.protobuf.ListValueR\x11repeatedListValue\x12\x1f\n" +
+	"\x13repeated_list_value\x18\xbd\x02 \x03(\v2\x1a.google.protobuf.ListValueR\x11repeatedListValue\x12>\n" +
+	"\x0erepeated_empty\x18\xbe\x02 \x03(\v2\x16.google.protobuf.EmptyR\rrepeatedEmpty\x12\x1f\n" +
 	"\n" +
 	"fieldname1\x18\x91\x03 \x01(\x05R\n" +
 	"fieldname1\x12 \n" +
@@ -2078,7 +2097,8 @@ var file_google_protobuf_test_messages_proto3_proto_goTypes = []any{
 	(*structpb.Struct)(nil),                  // 41: google.protobuf.Struct
 	(*anypb.Any)(nil),                        // 42: google.protobuf.Any
 	(*structpb.Value)(nil),                   // 43: google.protobuf.Value
-	(*structpb.ListValue)(nil),               // 44: google.protobuf.ListValue
+	(*emptypb.Empty)(nil),                    // 44: google.protobuf.Empty
+	(*structpb.ListValue)(nil),               // 45: google.protobuf.ListValue
 }
 var file_google_protobuf_test_messages_proto3_proto_depIdxs = []int32{
 	8,  // 0: protobuf_test_messages.proto3.TestAllTypesProto3.optional_nested_message:type_name -> protobuf_test_messages.proto3.TestAllTypesProto3.NestedMessage
@@ -2140,23 +2160,25 @@ var file_google_protobuf_test_messages_proto3_proto_depIdxs = []int32{
 	42, // 56: protobuf_test_messages.proto3.TestAllTypesProto3.optional_any:type_name -> google.protobuf.Any
 	43, // 57: protobuf_test_messages.proto3.TestAllTypesProto3.optional_value:type_name -> google.protobuf.Value
 	28, // 58: protobuf_test_messages.proto3.TestAllTypesProto3.optional_null_value:type_name -> google.protobuf.NullValue
-	38, // 59: protobuf_test_messages.proto3.TestAllTypesProto3.repeated_duration:type_name -> google.protobuf.Duration
-	39, // 60: protobuf_test_messages.proto3.TestAllTypesProto3.repeated_timestamp:type_name -> google.protobuf.Timestamp
-	40, // 61: protobuf_test_messages.proto3.TestAllTypesProto3.repeated_fieldmask:type_name -> google.protobuf.FieldMask
-	41, // 62: protobuf_test_messages.proto3.TestAllTypesProto3.repeated_struct:type_name -> google.protobuf.Struct
-	42, // 63: protobuf_test_messages.proto3.TestAllTypesProto3.repeated_any:type_name -> google.protobuf.Any
-	43, // 64: protobuf_test_messages.proto3.TestAllTypesProto3.repeated_value:type_name -> google.protobuf.Value
-	44, // 65: protobuf_test_messages.proto3.TestAllTypesProto3.repeated_list_value:type_name -> google.protobuf.ListValue
-	4,  // 66: protobuf_test_messages.proto3.TestAllTypesProto3.NestedMessage.corecursive:type_name -> protobuf_test_messages.proto3.TestAllTypesProto3
-	8,  // 67: protobuf_test_messages.proto3.TestAllTypesProto3.MapStringNestedMessageEntry.value:type_name -> protobuf_test_messages.proto3.TestAllTypesProto3.NestedMessage
-	5,  // 68: protobuf_test_messages.proto3.TestAllTypesProto3.MapStringForeignMessageEntry.value:type_name -> protobuf_test_messages.proto3.ForeignMessage
-	1,  // 69: protobuf_test_messages.proto3.TestAllTypesProto3.MapStringNestedEnumEntry.value:type_name -> protobuf_test_messages.proto3.TestAllTypesProto3.NestedEnum
-	0,  // 70: protobuf_test_messages.proto3.TestAllTypesProto3.MapStringForeignEnumEntry.value:type_name -> protobuf_test_messages.proto3.ForeignEnum
-	71, // [71:71] is the sub-list for method output_type
-	71, // [71:71] is the sub-list for method input_type
-	71, // [71:71] is the sub-list for extension type_name
-	71, // [71:71] is the sub-list for extension extendee
-	0,  // [0:71] is the sub-list for field type_name
+	44, // 59: protobuf_test_messages.proto3.TestAllTypesProto3.optional_empty:type_name -> google.protobuf.Empty
+	38, // 60: protobuf_test_messages.proto3.TestAllTypesProto3.repeated_duration:type_name -> google.protobuf.Duration
+	39, // 61: protobuf_test_messages.proto3.TestAllTypesProto3.repeated_timestamp:type_name -> google.protobuf.Timestamp
+	40, // 62: protobuf_test_messages.proto3.TestAllTypesProto3.repeated_fieldmask:type_name -> google.protobuf.FieldMask
+	41, // 63: protobuf_test_messages.proto3.TestAllTypesProto3.repeated_struct:type_name -> google.protobuf.Struct
+	42, // 64: protobuf_test_messages.proto3.TestAllTypesProto3.repeated_any:type_name -> google.protobuf.Any
+	43, // 65: protobuf_test_messages.proto3.TestAllTypesProto3.repeated_value:type_name -> google.protobuf.Value
+	45, // 66: protobuf_test_messages.proto3.TestAllTypesProto3.repeated_list_value:type_name -> google.protobuf.ListValue
+	44, // 67: protobuf_test_messages.proto3.TestAllTypesProto3.repeated_empty:type_name -> google.protobuf.Empty
+	4,  // 68: protobuf_test_messages.proto3.TestAllTypesProto3.NestedMessage.corecursive:type_name -> protobuf_test_messages.proto3.TestAllTypesProto3
+	8,  // 69: protobuf_test_messages.proto3.TestAllTypesProto3.MapStringNestedMessageEntry.value:type_name -> protobuf_test_messages.proto3.TestAllTypesProto3.NestedMessage
+	5,  // 70: protobuf_test_messages.proto3.TestAllTypesProto3.MapStringForeignMessageEntry.value:type_name -> protobuf_test_messages.proto3.ForeignMessage
+	1,  // 71: protobuf_test_messages.proto3.TestAllTypesProto3.MapStringNestedEnumEntry.value:type_name -> protobuf_test_messages.proto3.TestAllTypesProto3.NestedEnum
+	0,  // 72: protobuf_test_messages.proto3.TestAllTypesProto3.MapStringForeignEnumEntry.value:type_name -> protobuf_test_messages.proto3.ForeignEnum
+	73, // [73:73] is the sub-list for method output_type
+	73, // [73:73] is the sub-list for method input_type
+	73, // [73:73] is the sub-list for extension type_name
+	73, // [73:73] is the sub-list for extension extendee
+	0,  // [0:73] is the sub-list for field type_name
 }
 
 func init() { file_google_protobuf_test_messages_proto3_proto_init() }
